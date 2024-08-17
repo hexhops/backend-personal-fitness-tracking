@@ -1,0 +1,23 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "Dockerfile",
+      "use": "@vercel/node",
+      "config": {
+        "docker": {
+          "entrypoint": "bun run start"
+        }
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/",
+      "headers": {
+        "Cache-Control": "s-maxage=1, stale-while-revalidate"
+      }
+    }
+  ]
+}
